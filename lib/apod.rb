@@ -2,16 +2,13 @@
 class Apod
   def initialize(data)
     data.each do |k, v|
-      binding.pry
       instance_variable_set("@#{k}", v)
 
-      define_method k do
-        instance_variable_get("@#{k}")
-      end
+      reader = proc { instance_variable_get("@#{k}") }
+      self.class.send('define_method', k, reader)
 
-      define_method "#{k}=" do |other|
-        instance_variable_set("@#{k}", other)
-      end
+      getter = proc { |other| instance_variable_set("@#{k}", other) }
+      self.class.send('define_method', "#{k}=", getter)
     end
   end
 end

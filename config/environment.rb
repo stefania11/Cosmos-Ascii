@@ -1,6 +1,6 @@
 require 'json'
 require 'open-uri'
-require 'ascii-image'
+require 'asciiart'
 require 'pry'
 
 require_relative '../lib/apod.rb'
