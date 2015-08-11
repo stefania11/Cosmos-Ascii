@@ -2,6 +2,7 @@
 class Apod
   def initialize(data)
     data.each do |k, v|
+      binding.pry
       instance_variable_set("@#{k}", v)
 
       define_method k do
