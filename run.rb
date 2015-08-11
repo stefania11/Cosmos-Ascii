@@ -31,5 +31,5 @@ voice = %w( Agnes
     Whisper
     Zarvox )
 
-cmd ="say -v #{voice.sample} \"#{apod.explanation}\""
-`#{cmd}`
+# cmd ="say -v #{voice.sample} \"#{apod.explanation}\""
+# `#{cmd}`
