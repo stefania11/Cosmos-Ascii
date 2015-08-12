@@ -1,3 +1,4 @@
+# Tools to make communication between ruby and bash a bit simpler
 module Terminal
   # VOICES = YAML.load_file('lib/assets/voices.yml')
   NONMUSICAL_VOICES = YAML.load_file('lib/assets/nonmusical_voices.yml')
