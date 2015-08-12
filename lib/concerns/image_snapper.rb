@@ -30,6 +30,7 @@ module ImageSnapper
         puts i
         sleep 0.5
       end
+    end
   end
 
   def self.file_write
@@ -42,5 +43,5 @@ module ImageSnapper
     ImageSnapper.welcome
     ImageSnapper.take_pictures
     ImageSnapper.loop_images(4)
-  end  
+  end
 end

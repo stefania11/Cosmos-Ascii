@@ -30,8 +30,10 @@ module Terminal
                           music: MUSIC.sample,
                           voice: NONMUSICAL_VOICES.sample,
                           volume: 0.1)
+
     cmd = "say -v #{voice} \"#{text}\""\
           " & sleep 4 && afplay -v #{volume} #{music} &"
+
     system(cmd)
   end
 end

@@ -4,10 +4,12 @@ class APODGet
 
   attr_accessor :key, :url, :data
 
-  def initialize
+  def initialize(date: nil)
     @key = File.read('key')
-    @url = BASE_URL + @key + '&format=JSON'
+    @date = date
+    @url = "#{BASE_URL}#{@key}#{'date=' if date}#{@date}&format=JSON"
     @data = JSON.load(open(url))
+
   rescue
     create_key_for_user
     setup
@@ -15,9 +17,13 @@ class APODGet
 
   private
 
+  def add_date
+    @url = "#{url}&date=#{date}"
+  end
+
   def setup
     @key = File.read('key')
-    @url = BASE_URL + @key + '&format=JSON'
+    @url = "#{BASE_URL}#{@key}&format=JSON"
     @data = JSON.load(open(url))
   end
 
