@@ -37,7 +37,7 @@ module CLI
   end
 
   def self.p
-    # ImageSnaper.run
+    #ImageSnaper.run
   end
 
   def self.m
