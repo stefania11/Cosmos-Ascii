@@ -1,7 +1,4 @@
 class Cosmos
-  include Terminal
-  include CLI
-
   attr_accessor :api, :apod, :text, :title, :ascii
 
   def initialize(date: nil)
@@ -22,11 +19,7 @@ class Cosmos
   def assemble_pieces
     @text = apod.explanation
     @title = apod.title
-    @ascii = AsciiArtHelper.generate_ascii(url: apod.url,
-                                           width: 50,
-                                           color: true,
-                                           indent_depth: 2,
-                                           border: false)
+    @ascii = AsciiArtHelper.generate_ascii(src: apod.url)
   end
 
   def display
