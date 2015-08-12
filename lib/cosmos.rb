@@ -1,6 +1,12 @@
 class Cosmos
   attr_accessor :api, :apod, :text, :title, :ascii
 
+  @all_texts = []
+
+  class << self
+    attr_accessor :all_texts
+  end
+
   def initialize(date: nil)
     create_apod_object(date: date)
     assemble_pieces
@@ -20,6 +26,8 @@ class Cosmos
     @text = apod.explanation
     @title = apod.title
     @ascii = AsciiArtHelper.generate_ascii(src: apod.url)
+
+    Cosmos.all_texts << text
   end
 
   def display

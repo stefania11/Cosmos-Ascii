@@ -1,6 +1,5 @@
 # Tools to make building an interface a bit cleaner
 module CLI
-
   COMMANDS_WITH_DESCRIPTIONS = YAML.load_file('lib/assets/commands.yml')
   COMMANDS = COMMANDS_WITH_DESCRIPTIONS.keys.map(&:to_s)
 
@@ -31,7 +30,8 @@ module CLI
   # User commands
 
   def self.r
-    puts 'Read text--coming soong!'
+    line_break
+    puts Cosmos.all_texts.last
   end
 
   def self.d
@@ -43,7 +43,7 @@ module CLI
   end
 
   def self.m
-    puts 'Mute--coming soon!'
+    puts 'Mute is... coming soon! Probably.'
   end
 
   def self.q
