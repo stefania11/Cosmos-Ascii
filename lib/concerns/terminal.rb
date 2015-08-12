@@ -1,5 +1,5 @@
 module Terminal
-  VOICES = YAML.load_file('lib/assets/voices.yml')
+  # VOICES = YAML.load_file('lib/assets/voices.yml')
   NONMUSICAL_VOICES = YAML.load_file('lib/assets/nonmusical_voices.yml')
   MUSIC = Dir['lib/assets/music/*.m4a']
 
@@ -26,8 +26,12 @@ module Terminal
     system(cmd)
   end
 
-  def self.say_with_music(text:, m: MUSIC.sample, v: NONMUSICAL_VOICES.sample)
-    cmd = "say -v #{v} \"#{text}\" & sleep 4 && afplay -v 0.09 #{m} &"
+  def self.say_with_music(text: 'Space is cool.',
+                          music: MUSIC.sample,
+                          voice: NONMUSICAL_VOICES.sample,
+                          volume: 0.1)
+    cmd = "say -v #{voice} \"#{text}\""\
+          " & sleep 4 && afplay -v #{volume} #{music} &"
     system(cmd)
   end
 end
