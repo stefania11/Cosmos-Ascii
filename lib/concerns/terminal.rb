@@ -1,5 +1,7 @@
 module Terminal
-  VOICES = YAML.load_file('lib/assests/voices.yml')
+  # VOICES = YAML.load_file('lib/assets/voices.yml')
+  NONMUSICAL_VOICES = YAML.load_file('lib/assets/nonmusical_voices.yml')
+  MUSIC = Dir['lib/assets/music/*.m4a']
 
   def self.clear_screen
     puts "\e[H\e[2J"
@@ -11,11 +13,25 @@ module Terminal
 
   def self.say(text, voice = VOICES.sample)
     cmd = "say -v #{voice} \"#{text}\""
-    `#{cmd}`
+    system(cmd)
   end
 
   def self.open(thing)
     cmd = "open #{thing}"
     `#{cmd}`
+  end
+
+  def self.afplay(file)
+    cmd = "afplay #{file}"
+    system(cmd)
+  end
+
+  def self.say_with_music(text: 'Space is cool.',
+                          music: MUSIC.sample,
+                          voice: NONMUSICAL_VOICES.sample,
+                          volume: 0.1)
+    cmd = "say -v #{voice} \"#{text}\""\
+          " & sleep 4 && afplay -v #{volume} #{music} &"
+    system(cmd)
   end
 end
