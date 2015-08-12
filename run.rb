@@ -24,12 +24,19 @@ puts ascii
 puts title.center(80)
 CLI.list_commands
 
-# #####################
-# +++++++ MESSY +++++++
-
-# +++++++ MESSY +++++++
-# #####################
-
 # === Audio
 
-# Terminal.say(text)
+Terminal.say_with_music(text: text)
+
+# #####################
+# +++++++ MESSY +++++++
+
+command = gets.chomp
+if CLI::COMMANDS_OR_DESCRIPTIONS.include? command
+  puts "This is still in development!"
+else
+  puts "That's some bullshit."
+end
+
+# +++++++ MESSY +++++++
+# #####################
