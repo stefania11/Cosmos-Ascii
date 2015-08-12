@@ -17,6 +17,7 @@ ascii = AsciiArtHelper.generate_ascii(url: apod.url,
                                       indent_depth: 2,
                                       border: false)
 
+
 # === Display
 
 Terminal.clear_screen
