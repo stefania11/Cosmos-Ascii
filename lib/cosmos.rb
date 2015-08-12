@@ -2,6 +2,8 @@ class Cosmos
   include Terminal
   include CLI
 
+  attr_accessor :api, :apod, :text, :title, :ascii
+
   def initialize(date: nil)
     create_apod_object(date: date)
     assemble_pieces
@@ -18,9 +20,9 @@ class Cosmos
   end
 
   def assemble_pieces
-    @text = @apod.explanation
-    @title = @apod.title
-    @ascii = AsciiArtHelper.generate_ascii(url: @apod.url,
+    @text = apod.explanation
+    @title = apod.title
+    @ascii = AsciiArtHelper.generate_ascii(url: apod.url,
                                            width: 50,
                                            color: true,
                                            indent_depth: 2,
@@ -28,14 +30,14 @@ class Cosmos
   end
 
   def display
-    clear_screen
+    Terminal.clear_screen
     puts ascii
     puts title.center(80)
     CLI.list_commands
   end
 
   def cue_audio
-    say_with_music(text: text)
+    Terminal.say_with_music(text: text)
   end
 
   def await_command

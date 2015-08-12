@@ -1,3 +1,4 @@
+# Tools to make building an interface a bit cleaner
 module CLI
   COMMANDS_WITH_DESCRIPTIONS = YAML.load_file('lib/assets/commands.yml')
   COMMANDS = COMMANDS_WITH_DESCRIPTIONS.keys.map(&:to_s)
