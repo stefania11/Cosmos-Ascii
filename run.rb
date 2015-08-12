@@ -1,5 +1,7 @@
 require_relative 'config/environment.rb'
 
+Terminal.clear_screen
+
 # === Get
 
 api = APODGet.new
@@ -20,7 +22,7 @@ ascii = AsciiArtHelper.generate_ascii(url: apod.url,
 Terminal.clear_screen
 puts ascii
 puts title.center(80)
-puts text
+# puts text
 
 # === Audio
 

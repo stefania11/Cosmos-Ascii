@@ -4,7 +4,7 @@ module AsciiArtHelper
 
     ascii = remove_border(ascii) unless border
 
-    ascii = indent(ascii: ascii, tabs: indent_depth) if indent_depth
+    ascii = indent(ascii: ascii, indent_depth: indent_depth) if indent_depth
 
     ascii
   end
@@ -13,7 +13,7 @@ module AsciiArtHelper
     ascii.gsub(/\|\n/, "\n").gsub(/\n\|/, "\n").gsub(/\+-+\+/, "\n")
   end
 
-  def self.indent(ascii:, tabs:)
-    ascii.gsub(/\n/, "\n#{"\t" * tabs}")
+  def self.indent(ascii:, indent_depth:)
+    ascii.gsub(/\n/, "\n#{"\t" * indent_depth}")
   end
 end

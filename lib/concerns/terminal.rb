@@ -13,4 +13,9 @@ module Terminal
     cmd = "say -v #{voice} \"#{text}\""
     `#{cmd}`
   end
+
+  def self.open(thing)
+    cmd = "open #{thing}"
+    `#{cmd}`
+  end
 end
