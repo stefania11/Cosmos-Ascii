@@ -1,6 +1,11 @@
 module AsciiArtHelper
-  def self.generate_ascii(url:, color:, width:, indent_depth:, border:)
-    ascii = AsciiArt.new(url).to_ascii_art(color: color, width: width)
+  def self.generate_ascii(src:,
+                          color: true,
+                          width: 50,
+                          indent_depth: 2,
+                          border: false)
+
+    ascii = AsciiArt.new(src).to_ascii_art(color: color, width: width)
 
     ascii = remove_border(ascii) unless border
 
