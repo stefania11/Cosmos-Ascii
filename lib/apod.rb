@@ -1,5 +1,5 @@
 # Convert Json object into an instance of a class
-class Apod
+class APOD
   def initialize(data)
     data.each do |k, v|
       instance_variable_set("@#{k}", v)

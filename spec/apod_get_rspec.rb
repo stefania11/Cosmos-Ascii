@@ -1,11 +1,4 @@
 require_relative 'spec_helper'
-temp_data = {
-  url: 'http://apod.nasa.gov/apod/image/1508/BlueMoonHalo_Hang_960.jpg',
-  media_type: 'image',
-  explanation: "Have you ever seen a halo around the Moon? Such 22 degree rings around the Moon -- caused by ice crystals falling in the Earth's atmosphere -- are somewhat rare. OK, but have you ever seen a blue moon? Given the modern definition of blue moon -- the second full moon occurring in a calendar month -- these are also rare. What is featured above might therefore be considered doubly rare -- a halo surrounding a blue moon. The featured image was taken late last month near Zhongshan Station in Antarctica. Visible in the foreground are a power generating house and a snowmobile. What might seem to be stars in the background are actually illuminated snowflakes near the camera.",
-  concepts: [],
-  title: 'A Blue Moon Halo over Antarctica'
-}
 
 describe ApodGet do
   describe '#initialize' do
@@ -14,24 +7,30 @@ describe ApodGet do
     end
 
     it "sets a constant 'base_url' as the root url of the Spotify Chart API" do
-      expect(ApodGet::BASE_URL).to eq("https://api.nasa.gov/planetary/apod?api_key=")
+      expect(ApodGet::BASE_URL).to eq("https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=")
     end
 
     let(:apod_fetched) { ApodGet.new }
     it "should have a key" do
-      expect(:apod_fetched.key).to_not be_empty
+      expect(apod_fetched.key).to_not be_empty
     end
 
     it "should read the key file" do
-      File.should_receive(:read)
+      # File.should_receive(:read ).and_return("")
+      url = 'https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=my_key&format=JSON'
+      expect(File).to receive(:read ).and_return("my_key")
+      expect_any_instance_of(ApodGet).to receive(:open).with(url).and_return('"my data"')
+      instance = ApodGet.new
+      expect(instance.data).to eq("my data")
     end
 
     it "should have correct url" do
-      expect(:apod_fetched.url).to_eq "#{BASE_URL}" + "#{apod_fetched.key}" + '&format=JSON'
+      url = ApodGet::BASE_URL + "#{apod_fetched.key}" + '&format=JSON'
+      expect(apod_fetched.url).to eq url
     end
 
     it "should load Json data" do
-      expect(:apod_fetched.data).to_not be_empty
+      expect(apod_fetched.data).to_not be_empty
     end
 
   end

@@ -1,35 +1,29 @@
 require_relative 'config/environment.rb'
 
-api = ApodGet.new
-apod = Apod.new(api.data)
-image = AsciiArt.new(apod.url)
-ascii = image.to_ascii_art(color: true, width: 60)
-puts ascii.rjust(20)
-puts apod.explanation
-voice = %w( Agnes
-    Kathy
-    Princess
-    Vicki
-    Victoria
-    Alex
-    Bruce
-    Fred
-    Junior
-    Ralph
-    Albert
-    Bad\ News
-    Bahh
-    Bells
-    Boing
-    Bubbles
-    Cellos
-    Deranged
-    Good\ News
-    Hysterical
-    Pipe\ Organ
-    Trinoids
-    Whisper
-    Zarvox )
+Terminal.clear_screen
 
-# cmd ="say -v #{voice.sample} \"#{apod.explanation}\""
-# `#{cmd}`
+# === Get
+
+api = APODGet.new
+apod = APOD.new(api.data)
+
+# === Assign
+
+text = apod.explanation
+title = apod.title
+ascii = AsciiArtHelper.generate_ascii(url: apod.url,
+                                      width: 50,
+                                      color: true,
+                                      indent_depth: 2,
+                                      border: false)
+
+# === Display
+
+Terminal.clear_screen
+puts ascii
+puts title.center(80)
+# puts text
+
+# === Audio
+
+Terminal.say(text)
