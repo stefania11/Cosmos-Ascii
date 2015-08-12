@@ -2,10 +2,23 @@ require_relative 'config/environment.rb'
 
 api = ApodGet.new
 apod = Apod.new(api.data)
-image = AsciiArt.new(apod.url)
-ascii = image.to_ascii_art(color: true, width: 60)
-puts ascii.rjust(20)
-puts apod.explanation
+
+ascii = AsciiArtHelper.generate_ascii(url: apod.url,
+                                      width: 50,
+                                      color: true,
+                                      indent_depth: 2,
+                                      border: false)
+
+text = apod.explanation
+title = apod.title
+
+# ===
+
+puts "\e[H\e[2J"
+puts ascii
+puts title.center(80)
+puts text
+
 voice = %w( Agnes
     Kathy
     Princess
@@ -31,5 +44,5 @@ voice = %w( Agnes
     Whisper
     Zarvox )
 
-# cmd ="say -v #{voice.sample} \"#{apod.explanation}\""
-# `#{cmd}`
+cmd = "say -v #{voice.sample} \"#{apod.explanation}\""
+`#{cmd}`
