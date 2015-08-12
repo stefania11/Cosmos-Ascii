@@ -6,7 +6,7 @@ class APODGet
 
   def initialize
     @key = File.read('key')
-    @url = BASE_URL + key + '&format=JSON'
+    @url = BASE_URL + @key + '&format=JSON'
     @data = JSON.load(open(url))
   end
 end
