@@ -1,9 +1,11 @@
 require_relative 'config/environment.rb'
 
+# === Get
+
 api = APODGet.new
 apod = APOD.new(api.data)
 
-# ===
+# === Assign
 
 text = apod.explanation
 title = apod.title
