@@ -22,8 +22,14 @@ ascii = AsciiArtHelper.generate_ascii(url: apod.url,
 Terminal.clear_screen
 puts ascii
 puts title.center(80)
-# puts text
+CLI.list_commands
+
+# #####################
+# +++++++ MESSY +++++++
+
+# +++++++ MESSY +++++++
+# #####################
 
 # === Audio
 
-Terminal.say(text)
+# Terminal.say(text)

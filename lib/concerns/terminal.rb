@@ -1,5 +1,5 @@
 module Terminal
-  VOICES = YAML.load_file('lib/assests/voices.yml')
+  VOICES = YAML.load_file('lib/assets/voices.yml')
 
   def self.clear_screen
     puts "\e[H\e[2J"
