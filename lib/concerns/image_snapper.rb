@@ -19,7 +19,8 @@ module ImageSnapper
     file="lib/assests/images/#{Time.now.to_i}.jpg"
     NUMBER_OF_PICTURES.times do
       system "imagesnap -q -w 1 #{file}"
-      new_image = AsciiArtHelper.generate_ascii(source: "#{file}")
+      new_image = AsciiArtHelper.generate_ascii(src: "#{file}")
+      IMAGES << new_image
     end
   end
 
