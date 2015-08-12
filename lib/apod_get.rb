@@ -1,5 +1,5 @@
 # class getting image of the day from Nasa
-class ApodGet
+class APODGet
   BASE_URL = 'https://api.nasa.gov/planetary/apod?concept_tags=True&api_key='
 
   attr_accessor :key, :url, :data
