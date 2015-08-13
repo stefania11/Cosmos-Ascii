@@ -38,11 +38,11 @@ module CLI
 
   def self.r
     Terminal.kill_say
-    puts Cosmos.most_recent_text
+    puts Cosmos.most_recent.explanation
   end
 
   def self.v
-    Terminal.open(Cosmos.most_recent_img_src)
+    Terminal.open(Cosmos.most_recent.url)
   end
 
   def self.d
