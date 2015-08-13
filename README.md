@@ -4,6 +4,7 @@ description to you in spacy ways.
 It also alows you to take selfies from the terminal and transform them into an Ascii gif. 
 
 To test it: 
+
 1. git clone repo
 2. ruby run.rb
 3. turn your sound on 
