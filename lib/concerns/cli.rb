@@ -35,7 +35,9 @@ module CLI
   end
 
   def self.d
-    puts 'Search by date--coming soon!'
+    puts "For which day would you like to see the APOD?"
+    date = prompt('Enter a date in the format YYYY-MM-DD')
+    Cosmos.new(date: date)
   end
 
   def self.p
