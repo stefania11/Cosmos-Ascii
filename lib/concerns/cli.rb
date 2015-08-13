@@ -31,7 +31,7 @@ module CLI
 
   def self.r
     line_break
-    puts Cosmos.all_texts.last
+    puts Cosmos.most_recent_text
   end
 
   def self.d

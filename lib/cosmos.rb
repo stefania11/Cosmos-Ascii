@@ -5,6 +5,10 @@ class Cosmos
 
   class << self
     attr_accessor :all_texts
+
+    def most_recent_text
+      all_texts.last
+    end
   end
 
   def initialize(date: nil)
