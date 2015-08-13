@@ -4,7 +4,7 @@ module ImageSnapper
   NUMBER_OF_PICTURES = 7
   NUMBER_OF_LOOPS = 3
   QUOTE = "\"Space is cool and y'all are made up of star guts.\""\
-          "\n\t\t\t\t\t-- Aliens"
+          "\n\t\t\t\t\t\t-- Aliens"
 
   def self.welcome
     puts 'Welcome to our intergalactic photobooth from your command line!'
@@ -12,7 +12,7 @@ module ImageSnapper
   end
 
   def self.take_pictures
-    file = "lib/assets/images/#{Time.now.to_i}.jpg"
+    file = 'lib/assets/images/img.jpg'
 
     NUMBER_OF_PICTURES.times do
       system "imagesnap -q -w 1 #{file}"
@@ -27,7 +27,7 @@ module ImageSnapper
     n.times do
       ASCII_IMAGES.each do |i|
         Terminal.clear_screen
-        puts QUOTE.center(110)
+        puts QUOTE.center(97)
         puts i
         sleep 0.5
       end
