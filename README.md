@@ -1,13 +1,21 @@
 # Cosmos-Ascii
-This is cli program that transforms Nasa picture of the day into Ascii art jpeg and lullabies the 
-description to you in spacy ways.
-It also alows you to take selfies from the terminal and transform them into an Ascii gif. 
+This is CLI program that transforms NASA's [Astronomy Picture of the Day](http://apod.nasa.gov/) into ascii art and lullabies the description to you in space-y ways.
 
-To test it: 
+It also allows you to take selfies from the terminal and transform them into an ascii gif.
 
-1. git clone repo
-2. ruby run.rb
-3. turn your sound on 
+#### To install:
 
-Any PRs/ new features welcomed! 
-Live long and prosper. \\//
+```BASH
+$ git clone https://github.com/stefania11/Cosmos-Ascii.git
+```
+
+#### To run:
+ ```BASH
+$ cd Cosmos-Ascii/
+$ ./cosmos-ascii
+```
+...turn your sound on!
+
+#### To contribute:
+Fork this repo, build something awesome, and submit a pull request!
+Live long and prosper. \\\\//

@@ -30,10 +30,10 @@ module Terminal
   def self.say_with_music(text: 'Space is cool.',
                           music: MUSIC.sample,
                           voice: NONMUSICAL_VOICES.sample,
-                          volume: 0.5)
+                          volume: 0.8)
 
     cmd = "say -v #{voice} \"#{text}\""\
-          " & sleep 4 && afplay -v #{volume} #{music} &"
+          " & sleep 3 && afplay -v #{volume} #{music} &"
 
     system(cmd)
   end
