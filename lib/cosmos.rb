@@ -3,12 +3,17 @@ class Cosmos
   attr_accessor :api, :apod, :text, :title, :ascii
 
   @all_texts = []
+  @all_img_src = []
 
   class << self
-    attr_accessor :all_texts
+    attr_accessor :all_texts, :all_img_src
 
     def most_recent_text
       all_texts.last
+    end
+
+    def most_recent_img_src
+      all_img_src.last
     end
   end
 
@@ -33,6 +38,7 @@ class Cosmos
     @ascii = AsciiArtHelper.generate_ascii(src: apod.url)
 
     Cosmos.all_texts << text
+    Cosmos.all_img_src << apod.url
   end
 
   def display

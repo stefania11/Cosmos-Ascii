@@ -1,6 +1,7 @@
 ---
-r: read text
-d: view APOD by date
-p: take a picture
+r: read
+v: view
+d: date
+p: photobooth
 m: mute
 q: quit

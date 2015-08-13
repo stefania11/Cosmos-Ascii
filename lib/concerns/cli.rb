@@ -41,6 +41,10 @@ module CLI
     puts Cosmos.most_recent_text
   end
 
+  def self.v
+    Terminal.open(Cosmos.most_recent_img_src)
+  end
+
   def self.d
     puts 'For which day would you like to see the APOD?'
 
