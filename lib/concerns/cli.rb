@@ -37,6 +37,7 @@ module CLI
   # User commands
 
   def self.r # read
+    Terminal.kill_say
     puts Cosmos.most_recent_text
   end
 
@@ -61,7 +62,9 @@ module CLI
   end
 
   def self.m # kill current audio
-    puts 'Mute is... coming soon! Probably.'
+    Terminal.kill_say
+    Terminal.kill_afplay
+    # puts 'Mute is... coming soon! Probably.'
   end
 
   def self.q # quit

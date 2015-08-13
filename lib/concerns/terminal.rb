@@ -19,7 +19,7 @@ module Terminal
 
   def self.open(thing)
     cmd = "open #{thing}"
-    `#{cmd}`
+    system(cmd)
   end
 
   def self.afplay(file)
@@ -35,6 +35,16 @@ module Terminal
     cmd = "say -v #{voice} \"#{text}\""\
           " & sleep 4 && afplay -v #{volume} #{music} &"
 
+    system(cmd)
+  end
+
+  def self.kill_say
+    cmd = "kill -15 $(ps aux | pgrep -l say | egrep -o '\\d+') &> /dev/null"
+    system(cmd)
+  end
+
+  def self.kill_afplay
+    cmd = "kill -15 $(ps aux | pgrep -l afplay | egrep -o '\\d+') &> /dev/null"
     system(cmd)
   end
 end
