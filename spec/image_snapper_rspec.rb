@@ -1,36 +1,38 @@
 require_relative 'spec_helper'
 describe ImageSnapper do
-  describe '#initialize' do
-    it "does not raise error when called on with no arguments" do
-      expect { ApodGet.new }.to_not raise_error
+  describe 'welcome' do
+    it "displays welcome message" do
+      expect { ImageSnapper.welcome }.to stdout('Welcome to our intergalactic photobooth from your command line!')
+    end
+  end
+
+  describe 'take_pictures' do
+    it "sets a constant as iterator" do
+      expect(ImageSnapper::NUMBER_OF_PICTURES).to eq(7)
     end
 
-    it "sets a constant 'base_url' as the root url of the Spotify Chart API" do
-      expect(ApodGet::BASE_URL).to eq("https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=")
+    it "should create an image file" do
+      expect(file).to eq("'lib/assests/images/#{Time.now.to_i}.jpg'")
     end
 
-    let(:apod_fetched) { ApodGet.new }
-    it "should have a key" do
-      expect(apod_fetched.key).to_not be_empty
+    it "should shovel new pictures to array of pictures" do
+      expect(ImageSnapper::IMAGES).to_not be_empty
+    end
+  end
+
+  describe 'loop_images' do
+    it "shoud take a default loop number constant" do
+      expect(ImageSnapper::NUMBER_OF_LOOPS).to_eq(3)
     end
 
-    it "should read the key file" do
-      # File.should_receive(:read ).and_return("")
-      url = 'https://api.nasa.gov/planetary/apod?concept_tags=True&api_key=my_key&format=JSON'
-      expect(File).to receive(:read ).and_return("my_key")
-      expect_any_instance_of(ApodGet).to receive(:open).with(url).and_return('"my data"')
-      instance = ApodGet.new
-      expect(instance.data).to eq("my data")
+    it "should print the images in a loop" do
+      expect(ImageSnapper.loop_images(5)).to stdout 21.times
     end
+  end
 
-    it "should have correct url" do
-      url = ApodGet::BASE_URL + "#{apod_fetched.key}" + '&format=JSON'
-      expect(apod_fetched.url).to eq url
+  describe 'file_write' do
+    it "should add images to a yaml file" do
+      expect(File.open('lib/assests/images.yml')).to_not be_empty
     end
-
-    it "should load Json data" do
-      expect(apod_fetched.data).to_not be_empty
-    end
-
   end
 end
