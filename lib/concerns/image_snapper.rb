@@ -10,7 +10,7 @@ module ImageSnapper
   end
 
   def self.take_pictures
-    file='lib/assests/images/#{Time.now.to_i}.jpg'
+    file = 'lib/assests/images/#{Time.now.to_i}.jpg'
     NUMBER_OF_PICTURES.times do
       system "imagesnap -q -w 1 #{file}"
       new_image = AsciiArtHelper.generate_ascii(src: "#{file}")
@@ -18,7 +18,7 @@ module ImageSnapper
     end
   end
 
-  def self.loop_images(n =NUMBER_OF_LOOPS)
+  def self.loop_images(n = NUMBER_OF_LOOPS)
     n.times do
       IMAGES.each do |i|
         Terminal.clear_screen
@@ -29,7 +29,7 @@ module ImageSnapper
   end
 
   def self.file_write
-    File.open('lib/assests/images.yml','w') do |f|
+    File.open('lib/assets/images.yml', 'w') do |f|
       f.write(IMAGES.to_yaml)
     end
   end

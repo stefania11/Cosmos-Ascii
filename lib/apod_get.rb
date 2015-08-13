@@ -5,7 +5,6 @@ class APODGet
   attr_accessor :key, :url, :data
 
   def initialize(date: nil)
-    # binding.pry
     @key = File.read('key')
     @date = date
     @url = "#{BASE_URL}#{@key}#{'&date=' if date}#{@date}&format=JSON"
