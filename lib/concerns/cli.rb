@@ -36,24 +36,25 @@ module CLI
 
   # User commands
 
-  def self.r # read
+  def self.r
     Terminal.kill_say
     puts Cosmos.most_recent_text
   end
 
-  def self.d # display APOD for specific date
+  def self.d
     puts 'For which day would you like to see the APOD?'
 
     date = prompt('Enter a date in the format YYYY-MM-DD')
     validate(date)
 
+    m
     Cosmos.new(date: date)
   rescue
     date_error
     d
   end
 
-  def self.p # launch photobooth
+  def self.p
     ImageSnapper.run
 
   rescue
@@ -61,15 +62,14 @@ module CLI
     puts 'Quit this program and run `brew install imagesnap`.'
   end
 
-  def self.m # kill current audio
+  def self.m
     Terminal.kill_say
     Terminal.kill_afplay
-    # puts 'Mute is... coming soon! Probably.'
   end
 
-  def self.q # quit
+  def self.q
     adieu
-
+    m
     exit
   end
 

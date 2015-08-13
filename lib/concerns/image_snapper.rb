@@ -1,8 +1,10 @@
 # Module to take picture from cli and transform it to asci animation
 module ImageSnapper
-  IMAGES = []
+  ASCII_IMAGES = []
   NUMBER_OF_PICTURES = 7
   NUMBER_OF_LOOPS = 3
+  QUOTE = "\"Space is cool and y'all are made up of star guts.\""\
+          "\n\t\t\t\t\t-- Aliens"
 
   def self.welcome
     puts 'Welcome to our intergalactic photobooth from your command line!'
@@ -10,18 +12,22 @@ module ImageSnapper
   end
 
   def self.take_pictures
-    file = 'lib/assests/images/#{Time.now.to_i}.jpg'
+    file = "lib/assets/images/#{Time.now.to_i}.jpg"
+
     NUMBER_OF_PICTURES.times do
       system "imagesnap -q -w 1 #{file}"
-      new_image = AsciiArtHelper.generate_ascii(src: "#{file}")
-      IMAGES << new_image
+
+      ascii_image = AsciiArtHelper.generate_ascii(src: "#{file}")
+
+      ASCII_IMAGES << ascii_image
     end
   end
 
   def self.loop_images(n = NUMBER_OF_LOOPS)
     n.times do
-      IMAGES.each do |i|
+      ASCII_IMAGES.each do |i|
         Terminal.clear_screen
+        puts QUOTE.center(110)
         puts i
         sleep 0.5
       end
@@ -29,15 +35,15 @@ module ImageSnapper
   end
 
   def self.file_write
-    File.open('lib/assets/images.yml', 'w') do |f|
-      f.write(IMAGES.to_yaml)
+    File.open('lib/assets/images/images.yml', 'w') do |f|
+      f.write(ASCII_IMAGES.to_yaml)
     end
   end
 
   def self.run
-    ImageSnapper.welcome
-    ImageSnapper.take_pictures
-    ImageSnapper.loop_images(4)
+    welcome
+    take_pictures
+    loop_images(4)
     CLI.list_commands
   end
 end
