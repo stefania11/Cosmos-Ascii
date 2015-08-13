@@ -44,5 +44,6 @@ module ImageSnapper
     ImageSnapper.welcome
     ImageSnapper.take_pictures
     ImageSnapper.loop_images(4)
+    CLI.list_commands
   end
 end

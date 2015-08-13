@@ -24,13 +24,13 @@ module CLI
 
   def self.listen_for_command
     command = gets.chomp
+    line_break
     parse_and_execute(command)
   end
 
   # User commands
 
   def self.r
-    line_break
     puts Cosmos.most_recent_text
   end
 
@@ -40,6 +40,9 @@ module CLI
 
   def self.p
     ImageSnapper.run
+  rescue
+    puts 'You need to install ImageSnap to use this feature.'
+    puts 'Quit this program and run `brew install imagesnap`.'
   end
 
   def self.m
@@ -61,19 +64,17 @@ module CLI
       puts "That's some bullshit. Try again."
 
     end
-
     await_next_command
   end
 
   def self.adieu
     puts 'Live long and prosper. \\\\//'
     line_break
-    sleep 1
+    sleep 0.5
   end
 
   def self.await_next_command
     line_break
-    list_commands
     listen_for_command
   end
 end

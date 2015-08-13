@@ -15,8 +15,8 @@ class Cosmos
     create_apod_object(date: date)
     assemble_pieces
     display
-    cue_audio
-    await_command
+    Terminal.say_with_music(text: text)
+    CLI.listen_for_command
   end
 
   private
@@ -39,13 +39,5 @@ class Cosmos
     puts ascii
     puts title.center(80)
     CLI.list_commands
-  end
-
-  def cue_audio
-    Terminal.say_with_music(text: text)
-  end
-
-  def await_command
-    CLI.listen_for_command
   end
 end
