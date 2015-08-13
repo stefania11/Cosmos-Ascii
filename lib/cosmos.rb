@@ -1,3 +1,4 @@
+# Creates instances of the program, essentially
 class Cosmos
   attr_accessor :api, :apod, :text, :title, :ascii
 
