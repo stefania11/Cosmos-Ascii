@@ -44,8 +44,12 @@ module CLI
     puts 'For which day would you like to see the APOD?'
 
     date = prompt('Enter a date in the format YYYY-MM-DD')
+    validate(date)
 
     Cosmos.new(date: date)
+  rescue
+    date_error
+    d
   end
 
   def self.p # launch photobooth
@@ -67,6 +71,24 @@ module CLI
   end
 
   private
+
+  def date_error
+    line_break
+    puts "There was a problem retrieving the APOD for #{date}!"
+    puts 'Please try another date.'
+    line_break
+  end
+
+  def self.validate(date)
+    invalid_date unless date =~ /\d{4}-\d{2}-\d{2}/
+  end
+
+  def self.invalid_date
+    line_break
+    puts 'The date you entered was not in the correct format.'
+    line_break
+    d
+  end
 
   def self.parse_and_execute(command)
     if COMMANDS.include? command
