@@ -1,6 +1,5 @@
 # Tools to make building an interface a bit cleaner
 module CLI
-
   COMMANDS_WITH_DESCRIPTIONS = YAML.load_file('lib/assets/commands.yml')
   COMMANDS = COMMANDS_WITH_DESCRIPTIONS.keys.map(&:to_s)
 
@@ -25,25 +24,31 @@ module CLI
 
   def self.listen_for_command
     command = gets.chomp
+    line_break
     parse_and_execute(command)
   end
 
   # User commands
 
   def self.r
-    puts 'Read text--coming soong!'
+    puts Cosmos.most_recent_text
   end
 
   def self.d
-    puts 'Search by date--coming soon!'
+    puts "For which day would you like to see the APOD?"
+    date = prompt('Enter a date in the format YYYY-MM-DD')
+    Cosmos.new(date: date)
   end
 
   def self.p
     ImageSnapper.run
+  rescue
+    puts 'You need to install ImageSnap to use this feature.'
+    puts 'Quit this program and run `brew install imagesnap`.'
   end
 
   def self.m
-    puts 'Mute--coming soon!'
+    puts 'Mute is... coming soon! Probably.'
   end
 
   def self.q
@@ -61,19 +66,17 @@ module CLI
       puts "That's some bullshit. Try again."
 
     end
-
     await_next_command
   end
 
   def self.adieu
     puts 'Live long and prosper. \\\\//'
     line_break
-    sleep 1
+    sleep 0.5
   end
 
   def self.await_next_command
     line_break
-    list_commands
     listen_for_command
   end
 end
