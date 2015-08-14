@@ -79,9 +79,9 @@ module CLI
 
   private
 
-  def date_error
+  def self.date_error
     line_break
-    puts "There was a problem retrieving the APOD for #{date}!"
+    puts "There was a problem retrieving the APOD for that date!"
     puts 'Please try another date.'
     line_break
   end
